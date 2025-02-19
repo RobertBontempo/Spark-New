@@ -8,7 +8,7 @@ app.use(cors());
 app.use(express.json());
 
 const openai = new OpenAI({
-    apiKey: process.env.OPENAI_API_KEY,
+    apiKey: process.env.OPENAI_API_KEY, // Ensure this matches your Render environment variable
 });
 
 app.post("/chat", async (req, res) => {
@@ -22,34 +22,9 @@ app.post("/chat", async (req, res) => {
 
         res.json({ reply: response.choices[0].message.content });
     } catch (error) {
-        console.error("ERROR DETAILS:", error);
+        console.error("ERROR DETAILS:", error.response ? error.response.data : error.message);
         res.status(500).json({ error: error.message });
     }
 });
-
-app.listen(3000, () => console.log("Server running on port 3000"));
-
-// Import axios
-const axios = require('axios');
-require('dotenv').config(); // To load the .env file
-
-// Your API key from .env
-const apiKey = process.env.API_KEY;
-
-// Example function to make an API request
-async function getApiData() {
-    try {
-        const response = await axios.get('https://api.openai.com/v1/completions', {
-            headers: {
-                'Authorization': `Bearer ${apiKey}`,
-            }
-        });
-        console.log(response.data); // Log the data you get back
-    } catch (error) {
-        console.error('Error making API request:', error);
-    }
-}
-
-getApiData(); // Call the function
 
 
