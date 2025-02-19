@@ -29,7 +29,6 @@ app.post("/chat", async (req, res) => {
 
 app.listen(3000, () => console.log("Server running on port 3000"));
 
-npm install axios
 // Import axios
 const axios = require('axios');
 require('dotenv').config(); // To load the .env file
