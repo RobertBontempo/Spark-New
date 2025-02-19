@@ -39,7 +39,7 @@ const apiKey = process.env.API_KEY;
 // Example function to make an API request
 async function getApiData() {
     try {
-        const response = await axios.get('https://api.example.com/data', {
+        const response = await axios.get('https://api.openai.com/v1/completions', {
             headers: {
                 'Authorization': `Bearer ${apiKey}`,
             }
